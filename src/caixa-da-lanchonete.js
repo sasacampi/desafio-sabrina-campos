@@ -1,5 +1,5 @@
 class CaixaDaLanchonete {
-  itemExistsInItens(itemCodigo, itens) {
+  itemExistsInItems(itemCodigo, itens) {
     return itens.some((item) => item.split(",")[0] === itemCodigo);
   }
 
@@ -15,7 +15,7 @@ class CaixaDaLanchonete {
         );
         if (
           !principalItem ||
-          !this.itemExistsInItens(principalItem.codigo, itens)
+          !this.itemExistsInItems(principalItem.codigo, itens)
         ) {
           error = true;
           break;
@@ -62,7 +62,7 @@ class CaixaDaLanchonete {
     return !paymentMethods.includes(formaDePagamento);
   }
 
-  calculateValueMainItens(itens, CARDAPIO) {
+  calculateValueMainItems(itens, CARDAPIO) {
     let valorTotal = 0;
 
     for (const itemPedido of itens) {
@@ -166,7 +166,7 @@ class CaixaDaLanchonete {
     const verifyPayment = this.verifyPayment(formaDePagamento);
     if (verifyPayment) return "Forma de pagamento inválida!";
 
-    const valueMainItems = this.calculateValueMainItens(itens, CARDAPIO);
+    const valueMainItems = this.calculateValueMainItems(itens, CARDAPIO);
     const valueItemExtras = this.calculateValueExtraItems(itens, CARDAPIO);
     const totalValue = valueMainItems + valueItemExtras;
     const amount = this.validatePaymentMethod(formaDePagamento, totalValue);
